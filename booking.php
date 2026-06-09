@@ -30,5 +30,31 @@ Nama Lapangan :
 </b>
 </p>
 
+<form method="POST">
+
+Tanggal Main
+<br>
+<input type="date" name="tanggal" required>
+
+<br><br>
+
+Jam Mulai
+<br>
+<input type="time" name="jam_mulai" required>
+
+<br><br>
+
+Jam Selesai
+<br>
+<input type="time" name="jam_selesai" required>
+
+<br><br>
+
+<button type="submit" name="simpan">
+Simpan Booking
+</button>
+
+</form>
+
 </body>
 </html>
