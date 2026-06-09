@@ -1,5 +1,5 @@
 <?php
-
+session_abort();
 include 'koneksi.php';
 
 $id_lapangan = $_GET['id'];
