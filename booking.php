@@ -12,6 +12,41 @@ $data = mysqli_query(
 
 $lapangan = mysqli_fetch_assoc($data);
 
+if(isset($_POST['simpan'])){
+
+    $user_id = $_SESSION['id'];
+
+    $tanggal = $_POST['tanggal'];
+
+    $jam_mulai = $_POST['jam_mulai'];
+
+    $jam_selesai = $_POST['jam_selesai'];
+
+    mysqli_query(
+        $koneksi,
+        "INSERT INTO pemesanan
+        (
+            user_id,
+            lapangan_id,
+            tanggal,
+            jam_mulai,
+            jam_selesai,
+            status
+        )
+        VALUES
+        (
+            '$user_id',
+            '$id_lapangan',
+            '$tanggal',
+            '$jam_mulai',
+            '$jam_selesai',
+            'Menunggu'
+        )"
+    );
+
+    echo "<h3>Booking Berhasil Disimpan</h3>";
+}
+
 ?>
 
 <!DOCTYPE html>
