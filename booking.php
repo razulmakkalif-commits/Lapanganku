@@ -25,59 +25,6 @@ if(isset($_POST['simpan'])){
     $jam_mulai = $_POST['jam_mulai'];
     $jam_selesai = $_POST['jam_selesai'];
 
-    $cek = mysqli_query(
-        $koneksi,
-        "SELECT * FROM pemesanan
-        WHERE lapangan_id='$id_lapangan'
-        AND tanggal='$tanggal'
-        AND status != 'Ditolak'
-        AND (
-            ('$jam_mulai' BETWEEN jam_mulai AND jam_selesai)
-            OR
-            ('$jam_selesai' BETWEEN jam_mulai AND jam_selesai)
-            OR
-            (jam_mulai BETWEEN '$jam_mulai' AND '$jam_selesai')
-        )"
-    );
-
-    if(mysqli_num_rows($cek) > 0){
-
-        echo "<script>
-            alert('Jadwal bentrok! Pilih jam lain.');
-        </script>";
-
-    }else{
-
-        mysqli_query(
-            $koneksi,
-            "INSERT INTO pemesanan
-            (
-                user_id,
-                lapangan_id,
-                tanggal,
-                jam_mulai,
-                jam_selesai,
-                status
-            )
-            VALUES
-            (
-                '$user_id',
-                '$id_lapangan',
-                '$tanggal',
-                '$jam_mulai',
-                '$jam_selesai',
-                'Menunggu'
-            )"
-        );
-
-        echo "<script>
-            alert('Booking berhasil dibuat!');
-            window.location='riwayat.php';
-        </script>";
-
-    }
-}
-
     mysqli_query(
         $koneksi,
         "INSERT INTO pemesanan
@@ -104,7 +51,7 @@ if(isset($_POST['simpan'])){
         alert('Booking berhasil dibuat!');
         window.location='riwayat.php';
     </script>";
-
+}
 
 ?>
 
