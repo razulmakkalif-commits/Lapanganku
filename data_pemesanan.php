@@ -83,6 +83,18 @@ Setujui
 Tolak
 </a>
 
+<td>
+
+<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Disetujui">
+Setujui
+</a>
+
+|
+
+<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Ditolak">
+Tolak
+</a>
+
 </td>
 
 </tr>
