@@ -1,6 +1,12 @@
 <?php
+
 session_start();
 include 'koneksi.php';
+
+if(!isset($_SESSION['id'])){
+    header("Location: login.php");
+    exit;
+}
 
 $id_lapangan = $_GET['id'];
 
@@ -15,11 +21,8 @@ $lapangan = mysqli_fetch_assoc($data);
 if(isset($_POST['simpan'])){
 
     $user_id = $_SESSION['id'];
-
     $tanggal = $_POST['tanggal'];
-
     $jam_mulai = $_POST['jam_mulai'];
-
     $jam_selesai = $_POST['jam_selesai'];
 
     mysqli_query(
@@ -44,7 +47,10 @@ if(isset($_POST['simpan'])){
         )"
     );
 
-    echo "<h3>Booking Berhasil Disimpan</h3>";
+    echo "<script>
+        alert('Booking berhasil dibuat!');
+        window.location='riwayat.php';
+    </script>";
 }
 
 ?>
@@ -53,43 +59,123 @@ if(isset($_POST['simpan'])){
 <html>
 <head>
     <title>Booking Lapangan</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:
+            linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+            url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80');
+
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .booking-card{
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 40px;
+        }
+
+        .lapangan-title{
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .price{
+            font-size: 28px;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .form-control{
+            border-radius: 12px;
+            height: 50px;
+        }
+
+        .btn-book{
+            height: 50px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+    </style>
 </head>
 <body>
 
-<h2>Booking Lapangan</h2>
+<div class="container py-5">
 
-<p>
-Nama Lapangan :
-<b>
-<?php echo $lapangan['nama_lapangan']; ?>
-</b>
-</p>
+    <div class="row justify-content-center">
 
-<form method="POST">
+        <div class="col-md-7">
 
-Tanggal Main
-<br>
-<input type="date" name="tanggal" required>
+            <div class="booking-card">
 
-<br><br>
+                <div class="text-center mb-4">
 
-Jam Mulai
-<br>
-<input type="time" name="jam_mulai" required>
+                    <h1>⚽ Booking Lapangan</h1>
 
-<br><br>
+                    <p>Lengkapi detail bookingmu</p>
 
-Jam Selesai
-<br>
-<input type="time" name="jam_selesai" required>
+                </div>
 
-<br><br>
+                <div class="mb-4 text-center">
 
-<button type="submit" name="simpan">
-Simpan Booking
-</button>
+                    <div class="lapangan-title">
+                        <?php echo $lapangan['nama_lapangan']; ?>
+                    </div>
 
-</form>
+                    <div class="price">
+                        Rp <?php echo number_format($lapangan['harga']); ?>/jam
+                    </div>
+
+                </div>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label>Tanggal Bermain</label>
+                        <input type="date" name="tanggal" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Jam Mulai</label>
+                        <input type="time" name="jam_mulai" class="form-control" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label>Jam Selesai</label>
+                        <input type="time" name="jam_selesai" class="form-control" required>
+                    </div>
+
+                    <button type="submit" name="simpan"
+                    class="btn btn-success btn-book w-100">
+                        Konfirmasi Booking
+                    </button>
+
+                </form>
+
+                <div class="text-center mt-4">
+
+                    <a href="lapangan.php" class="btn btn-light">
+                        Kembali
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
