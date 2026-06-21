@@ -26,6 +26,12 @@ Lihat Lapangan
 
 <br><br>
 
+<a href="riwayat.php">
+Riwayat Pemesanan
+</a>
+
+<br><br>
+
 <a href="logout.php">
 Logout
 </a>
