@@ -43,6 +43,7 @@ $data = mysqli_query(
     <th>Jam Mulai</th>
     <th>Jam Selesai</th>
     <th>Status</th>
+    <th>Aksi</th>
 </tr>
 
 <?php
@@ -69,6 +70,20 @@ while($row = mysqli_fetch_assoc($data))
 <td><?php echo $row['jam_selesai']; ?></td>
 
 <td><?php echo $row['status']; ?></td>
+
+<td>
+
+<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Disetujui">
+Setujui
+</a>
+
+|
+
+<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Ditolak">
+Tolak
+</a>
+
+</td>
 
 </tr>
 
