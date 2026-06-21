@@ -104,7 +104,7 @@ if(isset($_POST['simpan'])){
         alert('Booking berhasil dibuat!');
         window.location='riwayat.php';
     </script>";
-}
+
 
 ?>
 
