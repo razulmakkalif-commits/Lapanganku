@@ -1,8 +1,12 @@
 <?php
 
 session_start();
-
 include 'koneksi.php';
+
+if(!isset($_SESSION['id'])){
+    header("Location: login.php");
+    exit;
+}
 
 $user_id = $_SESSION['id'];
 
@@ -13,10 +17,9 @@ $data = mysqli_query(
         lapangan.nama_lapangan
     FROM pemesanan
     JOIN lapangan
-        ON pemesanan.lapangan_id = lapangan.id
+    ON pemesanan.lapangan_id = lapangan.id
     WHERE user_id='$user_id'
-"
-);
+");
 
 ?>
 
@@ -24,62 +27,126 @@ $data = mysqli_query(
 <html>
 <head>
     <title>Riwayat Pemesanan</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:
+            linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+            url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1600&q=80');
+
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .history-card{
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .history-card:hover{
+            transform: translateY(-5px);
+        }
+
+        .status{
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .menunggu{
+            background: orange;
+            color: black;
+        }
+
+        .disetujui{
+            background: green;
+            color: white;
+        }
+
+        .ditolak{
+            background: red;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
-<h2>Riwayat Pemesanan</h2>
+<div class="container py-5">
 
-<table border="1" cellpadding="10">
+    <div class="text-center mb-5">
 
-<tr>
-    <th>No</th>
-    <th>Lapangan</th>
-    <th>Tanggal</th>
-    <th>Jam Mulai</th>
-    <th>Jam Selesai</th>
-    <th>Status</th>
-</tr>
+        <h1>📜 Riwayat Booking</h1>
+        <p>Lihat semua aktivitas booking kamu</p>
 
-<?php
+    </div>
 
-$no = 1;
+    <div class="row g-4">
 
-while($row = mysqli_fetch_assoc($data))
-{
+        <?php while($row = mysqli_fetch_assoc($data)){ ?>
 
-?>
+        <div class="col-md-6">
 
-<tr>
+            <div class="history-card">
 
-<td><?php echo $no; ?></td>
+                <h3>
+                    ⚽ <?php echo $row['nama_lapangan']; ?>
+                </h3>
 
-<td><?php echo $row['nama_lapangan']; ?></td>
+                <hr>
 
-<td><?php echo $row['tanggal']; ?></td>
+                <p>
+                    <strong>Tanggal:</strong>
+                    <?php echo $row['tanggal']; ?>
+                </p>
 
-<td><?php echo $row['jam_mulai']; ?></td>
+                <p>
+                    <strong>Jam:</strong>
+                    <?php echo $row['jam_mulai']; ?>
+                    -
+                    <?php echo $row['jam_selesai']; ?>
+                </p>
 
-<td><?php echo $row['jam_selesai']; ?></td>
+                <p>
+                    <strong>Status:</strong>
 
-<td><?php echo $row['status']; ?></td>
+                    <?php
+                    if($row['status'] == 'Menunggu'){
+                        echo "<span class='status menunggu'>Menunggu</span>";
+                    }elseif($row['status'] == 'Disetujui'){
+                        echo "<span class='status disetujui'>Disetujui</span>";
+                    }else{
+                        echo "<span class='status ditolak'>Ditolak</span>";
+                    }
+                    ?>
+                </p>
 
-</tr>
+            </div>
 
-<?php
+        </div>
 
-$no++;
+        <?php } ?>
 
-}
+    </div>
 
-?>
+    <div class="text-center mt-5">
 
-</table>
+        <a href="dashboard.php" class="btn btn-light">
+            Kembali ke Dashboard
+        </a>
 
-<br>
+    </div>
 
-<a href="dashboard.php">
-Kembali ke Dashboard
-</a>
+</div>
 
 </body>
 </html>
