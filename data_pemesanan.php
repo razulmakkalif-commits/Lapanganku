@@ -28,80 +28,154 @@ $data = mysqli_query(
 <html>
 <head>
     <title>Data Pemesanan</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:
+            linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.80)),
+            url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80');
+
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .glass-table{
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        table{
+            color: white !important;
+        }
+
+        .status{
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .menunggu{
+            background: orange;
+            color: black;
+        }
+
+        .disetujui{
+            background: green;
+            color: white;
+        }
+
+        .ditolak{
+            background: red;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
-<h2>Data Pemesanan</h2>
+<div class="container py-5">
 
-<table border="1" cellpadding="10">
+    <div class="text-center mb-4">
 
-<tr>
-    <th>No</th>
-    <th>Nama User</th>
-    <th>Lapangan</th>
-    <th>Tanggal</th>
-    <th>Jam Mulai</th>
-    <th>Jam Selesai</th>
-    <th>Status</th>
-    <th>Aksi</th>
-</tr>
+        <h1>📋 Data Pemesanan</h1>
 
-<?php
+        <p>Kelola semua booking user</p>
 
-$no = 1;
+    </div>
 
-while($row = mysqli_fetch_assoc($data))
-{
+    <div class="glass-table">
 
-?>
+        <table class="table table-bordered table-hover text-center align-middle">
 
-<tr>
+            <tr>
+                <th>No</th>
+                <th>User</th>
+                <th>Lapangan</th>
+                <th>Tanggal</th>
+                <th>Jam</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
 
-<td><?php echo $no; ?></td>
+            <?php
+            $no = 1;
 
-<td><?php echo $row['nama']; ?></td>
+            while($row = mysqli_fetch_assoc($data))
+            {
+            ?>
 
-<td><?php echo $row['nama_lapangan']; ?></td>
+            <tr>
 
-<td><?php echo $row['tanggal']; ?></td>
+                <td><?php echo $no; ?></td>
 
-<td><?php echo $row['jam_mulai']; ?></td>
+                <td><?php echo $row['nama']; ?></td>
 
-<td><?php echo $row['jam_selesai']; ?></td>
+                <td><?php echo $row['nama_lapangan']; ?></td>
 
-<td><?php echo $row['status']; ?></td>
+                <td><?php echo $row['tanggal']; ?></td>
 
-<td>
+                <td>
+                    <?php echo $row['jam_mulai']; ?>
+                    -
+                    <?php echo $row['jam_selesai']; ?>
+                </td>
 
-<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Disetujui">
-Setujui
-</a>
+                <td>
 
-|
+                    <?php
+                    if($row['status'] == 'Menunggu'){
+                        echo "<span class='status menunggu'>Menunggu</span>";
+                    }elseif($row['status'] == 'Disetujui'){
+                        echo "<span class='status disetujui'>Disetujui</span>";
+                    }else{
+                        echo "<span class='status ditolak'>Ditolak</span>";
+                    }
+                    ?>
 
-<a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Ditolak">
-Tolak
-</a>
+                </td>
 
-</td>
+                <td>
 
-</tr>
+                    <a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Disetujui"
+                    class="btn btn-success btn-sm">
+                        Setujui
+                    </a>
 
-<?php
+                    <a href="ubah_status.php?id=<?php echo $row['id']; ?>&status=Ditolak"
+                    class="btn btn-danger btn-sm">
+                        Tolak
+                    </a>
 
-$no++;
+                </td>
 
-}
+            </tr>
 
-?>
+            <?php
+            $no++;
+            }
+            ?>
 
-</table>
+        </table>
 
-<br>
+    </div>
 
-<a href="admin_dashboard.php">
-Kembali ke Dashboard Admin
-</a>
+    <div class="text-center mt-4">
+
+        <a href="admin_dashboard.php" class="btn btn-light">
+            Kembali ke Dashboard Admin
+        </a>
+
+    </div>
+
+</div>
 
 </body>
-</html> 
+</html>
