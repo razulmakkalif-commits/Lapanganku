@@ -9,6 +9,7 @@ if(!isset($_SESSION['admin']))
     exit;
 }
 
+/** @var mysqli $koneksi */ // <-- Tambahkan baris ini untuk menghilangkan garis merah di editor
 $total_booking = mysqli_query(
     $koneksi,
     "SELECT COUNT(*) as total FROM pemesanan"
