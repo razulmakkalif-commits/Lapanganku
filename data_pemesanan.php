@@ -99,6 +99,7 @@ $data = mysqli_query(
             <tr>
                 <th>No</th>
                 <th>User</th>
+                <th>No HP</th>
                 <th>Lapangan</th>
                 <th>Tanggal</th>
                 <th>Jam</th>
@@ -118,6 +119,8 @@ $data = mysqli_query(
                 <td><?php echo $no; ?></td>
 
                 <td><?php echo $row['nama']; ?></td>
+
+                <td><?php echo $row['no_hp']; ?></td>
 
                 <td><?php echo $row['nama_lapangan']; ?></td>
 
