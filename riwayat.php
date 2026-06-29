@@ -77,6 +77,11 @@ $data = mysqli_query(
             color: white;
         }
 
+        .dibatalkan{
+            background: gray;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -119,13 +124,23 @@ $data = mysqli_query(
                 <p>
                     <strong>Status:</strong>
 
+                    <br><br>
+
+                    <a href="hapus_booking.php?id=<?php echo $row['id']; ?>"
+                    onclick="return confirm('Yakin ingin membatalkan booking ini?')"
+                    class="btn btn-danger">
+                        Batal Booking
+                    </a>
+
                     <?php
                     if($row['status'] == 'Menunggu'){
                         echo "<span class='status menunggu'>Menunggu</span>";
                     }elseif($row['status'] == 'Disetujui'){
                         echo "<span class='status disetujui'>Disetujui</span>";
-                    }else{
+                    }elseif($row['status'] == 'Ditolak'){
                         echo "<span class='status ditolak'>Ditolak</span>";
+                    }else{
+                        echo "<span class='status dibatalkan'>Dibatalkan</span>";
                     }
                     ?>
                 </p>
