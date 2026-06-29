@@ -9,6 +9,12 @@ if(!isset($_SESSION['admin']))
     exit;
 }
 
+$cari = "";
+
+if(isset($_GET['cari'])){
+    $cari = $_GET['cari'];
+}
+
 $data = mysqli_query(
     $koneksi,
     "SELECT
