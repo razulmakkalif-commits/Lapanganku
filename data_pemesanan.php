@@ -27,6 +27,7 @@ $data = mysqli_query(
         ON pemesanan.user_id = users.id
     JOIN lapangan
         ON pemesanan.lapangan_id = lapangan.id"
+        WHERE users.nama LIKE '%$cari%'
 );
 
 ?>
