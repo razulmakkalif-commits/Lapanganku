@@ -15,6 +15,12 @@ if(isset($_GET['cari'])){
     $cari = $_GET['cari'];
 }
 
+$status = "";
+
+if(isset($_GET['status'])){
+    $status = $_GET['status'];
+}
+
 $data = mysqli_query(
     $koneksi,
     "SELECT
