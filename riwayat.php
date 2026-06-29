@@ -77,6 +77,11 @@ $data = mysqli_query(
             color: white;
         }
 
+        .dibatalkan{
+            background: gray;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
