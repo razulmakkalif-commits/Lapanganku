@@ -11,7 +11,7 @@ if(isset($_POST['register'])){
     mysqli_query(
         $koneksi,
         "INSERT INTO users (nama,email,password)
-        VALUES ('$nama','$email','$password')"
+        VALUES ('$nama','$email','$password','$no_hp')"
     );
 
     echo "<script>
@@ -124,6 +124,11 @@ if(isset($_POST['register'])){
         <div class="mb-4 text-start">
             <label>Password</label>
             <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-4 text-start">
+            <label>Nomor HP / WhatsApp</label>
+            <input type="text" name="no_hp" class="form-control" required>
         </div>
 
         <button type="submit" name="register" class="btn btn-register w-100">
