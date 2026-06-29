@@ -126,6 +126,11 @@ if(isset($_POST['register'])){
             <input type="password" name="password" class="form-control" required>
         </div>
 
+        <div class="mb-4 text-start">
+            <label>Nomor HP / WhatsApp</label>
+            <input type="text" name="no_hp" class="form-control" required>
+        </div>
+
         <button type="submit" name="register" class="btn btn-register w-100">
             Daftar Sekarang
         </button>
