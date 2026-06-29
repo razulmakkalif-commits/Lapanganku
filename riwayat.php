@@ -122,6 +122,7 @@ $data = mysqli_query(
                     <br><br>
 
                     <a href="hapus_booking.php?id=<?php echo $row['id']; ?>"
+                    onclick="return confirm('Yakin ingin membatalkan booking ini?')"
                     class="btn btn-danger">
                         Batal Booking
                     </a>
