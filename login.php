@@ -2,6 +2,14 @@
 session_start();
 include 'koneksi.php';
 
+if (!isset($koneksi) || !$koneksi) {
+    $koneksi = mysqli_connect('localhost', 'root', '', 'lapanganku');
+}
+
+if (!$koneksi) {
+    die('Koneksi database gagal: ' . mysqli_connect_error());
+}
+
 if(isset($_POST['login'])){
 
     $email = $_POST['email'];

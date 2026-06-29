@@ -1,7 +1,11 @@
 <?php
 
 session_start();
-include 'koneksi.php';
+require_once 'koneksi.php';
+
+if (!isset($koneksi) || !$koneksi) {
+    $koneksi = mysqli_connect("localhost", "root", "", "lapanganku");
+}
 
 $id = $_GET['id'];
 
@@ -13,5 +17,3 @@ mysqli_query(
 );
 
 header("Location: riwayat.php");
-
-?>

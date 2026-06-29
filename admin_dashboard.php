@@ -1,7 +1,13 @@
 <?php
 
 session_start();
-include 'koneksi.php';
+
+$koneksi = null;
+require_once 'koneksi.php';
+
+if (!isset($koneksi) || $koneksi === null) {
+    die('Database connection not established.');
+}
 
 if(!isset($_SESSION['admin']))
 {

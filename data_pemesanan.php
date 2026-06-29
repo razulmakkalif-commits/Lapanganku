@@ -1,7 +1,11 @@
 <?php
 
 session_start();
-include 'koneksi.php';
+require_once 'koneksi.php';
+
+if (!isset($koneksi) || !$koneksi) {
+    die('Gagal terhubung ke database.');
+}
 
 if(!isset($_SESSION['admin']))
 {
@@ -21,9 +25,7 @@ if(isset($_GET['status'])){
     $status = $_GET['status'];
 }
 
-$data = mysqli_query(
-    $koneksi,
-    "SELECT
+$query = "SELECT
         pemesanan.*,
         users.nama,
         users.no_hp,
@@ -32,10 +34,19 @@ $data = mysqli_query(
     JOIN users
         ON pemesanan.user_id = users.id
     JOIN lapangan
-        ON pemesanan.lapangan_id = lapangan.id
-        WHERE users.nama LIKE '%$cari%'
-        AND status LIKE '%$status%'"
-);
+        ON pemesanan.lapangan_id = lapangan.id";
+
+// apply search filter
+if ($cari !== "") {
+    $query .= " WHERE users.nama LIKE '%" . mysqli_real_escape_string($koneksi, $cari) . "%'";
+}
+
+// apply status filter
+if ($status !== "") {
+    $query .= ($cari !== "") ? " AND pemesanan.status='" . mysqli_real_escape_string($koneksi, $status) . "'" : " WHERE pemesanan.status='" . mysqli_real_escape_string($koneksi, $status) . "'";
+}
+
+$data = mysqli_query($koneksi, $query);
 
 ?>
 
