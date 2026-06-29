@@ -108,6 +108,24 @@ if(!isset($_SESSION['id'])){
         </div>
 
         <div class="col-md-3">
+    <div class="glass p-4 text-center menu-card">
+
+        <h3>📞</h3>
+        <h4>Hubungi Admin</h4>
+
+        <p>
+            <?php echo $data_admin['no_hp']; ?>
+        </p>
+
+        <a href="https://wa.me/<?php echo $data_admin['no_hp']; ?>"
+        class="btn btn-info w-100">
+            Chat Admin
+        </a>
+
+    </div>
+</div>
+
+        <div class="col-md-3">
             <div class="glass p-4 text-center menu-card">
 
                 <h3>🚪</h3>
