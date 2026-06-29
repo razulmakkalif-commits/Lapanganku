@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+include 'koneksi.php';
+
+$admin = mysqli_query(
+    $koneksi,
+    "SELECT * FROM admin LIMIT 1"
+);
+
+$data_admin = mysqli_fetch_assoc($admin);
+
 if(!isset($_SESSION['id'])){
     header("Location: login.php");
     exit;
