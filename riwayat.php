@@ -137,8 +137,8 @@ $data = mysqli_query(
                         echo "<span class='status menunggu'>Menunggu</span>";
                     }elseif($row['status'] == 'Disetujui'){
                         echo "<span class='status disetujui'>Disetujui</span>";
-                    elseif($row['status'] == 'Ditolak'){
-                        echo "<span class='status ditolak'>Ditolak</span>";
+                    }elseif($row['status'] == 'Ditolak'){
+                    cho "<span class='status ditolak'>Ditolak</span>";
                     }
                     else{
                         echo "<span class='status dibatalkan'>Dibatalkan</span>";
