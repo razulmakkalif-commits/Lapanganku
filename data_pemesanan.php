@@ -108,6 +108,20 @@ $data = mysqli_query(
 
     <br>
 
+<br>
+
+<select name="status" class="form-control">
+
+    <option value="">Semua Status</option>
+    <option value="Menunggu">Menunggu</option>
+    <option value="Disetujui">Disetujui</option>
+    <option value="Ditolak">Ditolak</option>
+    <option value="Dibatalkan">Dibatalkan</option>
+
+</select>
+
+<br>
+
     <button type="submit" class="btn btn-warning">
         Cari
     </button>
