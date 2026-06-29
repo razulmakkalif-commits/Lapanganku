@@ -77,6 +77,11 @@ $data = mysqli_query(
             color: white;
         }
 
+        .dibatalkan{
+            background: gray;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -132,12 +137,17 @@ $data = mysqli_query(
 
                     <?php
                     if($row['status'] == 'Menunggu'){
-                        echo "<span class='status menunggu'>Menunggu</span>";
-                    }elseif($row['status'] == 'Disetujui'){
-                        echo "<span class='status disetujui'>Disetujui</span>";
-                    }else{
-                        echo "<span class='status ditolak'>Ditolak</span>";
-                    }
+                    echo "<span class='status menunggu'>Menunggu</span>";
+                }
+                elseif($row['status'] == 'Disetujui'){
+                    echo "<span class='status disetujui'>Disetujui</span>";
+                }
+                elseif($row['status'] == 'Ditolak'){
+                    echo "<span class='status ditolak'>Ditolak</span>";
+                }
+                else{
+                    echo "<span class='status dibatalkan'>Dibatalkan</span>";
+                }
                     ?>
 
                 </td>
