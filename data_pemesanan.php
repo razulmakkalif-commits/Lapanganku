@@ -92,6 +92,21 @@ $data = mysqli_query(
 
     </div>
 
+<form method="GET" class="mb-4">
+
+    <input type="text"
+    name="cari"
+    class="form-control"
+    placeholder="Cari nama user...">
+
+    <br>
+
+    <button type="submit" class="btn btn-warning">
+        Cari
+    </button>
+
+</form>
+
     <div class="glass-table">
 
         <table class="table table-bordered table-hover text-center align-middle">
