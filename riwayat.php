@@ -119,6 +119,13 @@ $data = mysqli_query(
                 <p>
                     <strong>Status:</strong>
 
+                    <br><br>
+
+                    <a href="hapus_booking.php?id=<?php echo $row['id']; ?>"
+                    class="btn btn-danger">
+                        Batal Booking
+                    </a>
+
                     <?php
                     if($row['status'] == 'Menunggu'){
                         echo "<span class='status menunggu'>Menunggu</span>";
