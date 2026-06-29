@@ -10,7 +10,7 @@ if(isset($_POST['register'])){
     
     mysqli_query(
         $koneksi,
-        "INSERT INTO users (nama,email,password)
+        "INSERT INTO users (nama,email,password,no_hp)
         VALUES ('$nama','$email','$password','$no_hp')"
     );
 
