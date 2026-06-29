@@ -132,6 +132,13 @@ $data = mysqli_query(
                         Batal Booking
                     </a>
 
+                    <br><br>
+
+                    <a href="upload_bukti.php?id=<?php echo $row['id']; ?>"
+                    class="btn btn-primary">
+                        Upload Bukti
+                    </a>
+
                     <?php
                     if($row['status'] == 'Menunggu'){
                         echo "<span class='status menunggu'>Menunggu</span>";
