@@ -6,7 +6,11 @@ if(!isset($_SESSION['id'])){
     exit;
 }
 
-include 'koneksi.php';
+require_once __DIR__ . '/koneksi.php';
+
+if (!isset($koneksi) || !$koneksi) {
+    die('Koneksi database tidak tersedia.');
+}
 
 $data = mysqli_query(
     $koneksi,

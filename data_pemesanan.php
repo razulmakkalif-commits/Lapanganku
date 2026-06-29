@@ -1,7 +1,11 @@
 <?php
 
 session_start();
-include 'koneksi.php';
+require_once 'koneksi.php';
+
+if (!isset($koneksi) || !$koneksi) {
+    die('Gagal terhubung ke database.');
+}
 
 if(!isset($_SESSION['admin']))
 {

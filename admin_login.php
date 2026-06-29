@@ -3,6 +3,13 @@
 session_start();
 include 'koneksi.php';
 
+if (!isset($koneksi) || $koneksi === null) {
+    $koneksi = mysqli_connect('localhost', 'root', '', 'lapanganku');
+    if (!$koneksi) {
+        die('Database connection failed: ' . mysqli_connect_error());
+    }
+}
+
 if(isset($_POST['login']))
 {
     $username = $_POST['username'];
